@@ -167,6 +167,7 @@ footer{background:rgba(240,244,248,0.82);backdrop-filter:blur(16px);-webkit-back
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#recommendations">Recommendations</a></li>
+    <li><a href="#get-in-touch">Contact</a></li>
   </ul>
 </nav>
 
@@ -352,6 +353,25 @@ footer{background:rgba(240,244,248,0.82);backdrop-filter:blur(16px);-webkit-back
   </div>
 </section>
 
+<section id="get-in-touch" style="padding:80px 52px;">
+  <div class="si">
+    <div class="sh">Get in touch!</div>
+    <div style="max-width:600px;">
+      <form id="contact-form" action="https://formspree.io/f/mgobkawq" method="POST">
+        <label style="display:block;font-size:13px;font-weight:700;color:#3d5070;margin-bottom:7px;letter-spacing:0.3px;">Your name</label>
+        <input type="text" name="name" id="name-box" placeholder="" style="width:100%;padding:14px 20px;font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:#0d1b3e;background:rgba(255,255,255,0.88);border:1.5px solid #dde3ed;border-radius:12px;outline:none;transition:border-color 0.2s;backdrop-filter:blur(8px);margin-bottom:20px;" onfocus="this.style.borderColor='#1a6ef5'" onblur="this.style.borderColor='#dde3ed'">
+        <label style="display:block;font-size:13px;font-weight:700;color:#3d5070;margin-bottom:7px;letter-spacing:0.3px;">Your email</label>
+        <input type="text" name="email" id="email-box" placeholder="" style="width:100%;padding:14px 20px;font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:#0d1b3e;background:rgba(255,255,255,0.88);border:1.5px solid #dde3ed;border-radius:12px;outline:none;transition:border-color 0.2s;backdrop-filter:blur(8px);margin-bottom:20px;" onfocus="this.style.borderColor='#1a6ef5'" onblur="this.style.borderColor='#dde3ed'">
+        <label style="display:block;font-size:13px;font-weight:700;color:#3d5070;margin-bottom:7px;letter-spacing:0.3px;">Your message</label>
+        <textarea name="message" id="msg-box" placeholder="Send me a message!" style="width:100%;min-height:160px;padding:18px 22px;font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:#0d1b3e;background:rgba(255,255,255,0.88);border:1.5px solid #dde3ed;border-radius:12px;resize:vertical;outline:none;transition:border-color 0.2s;backdrop-filter:blur(8px);line-height:1.7;" onfocus="this.style.borderColor='#1a6ef5'" onblur="this.style.borderColor='#dde3ed'"></textarea>
+        <input type="hidden" name="_subject" value="New message from your portfolio!">
+        <button type="submit" id="send-btn" style="margin-top:14px;padding:13px 34px;background:#0d1b3e;color:#fff;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:50px;cursor:pointer;transition:all 0.2s;letter-spacing:0.3px;" onmouseover="this.style.background='#1a6ef5';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#0d1b3e';this.style.transform='translateY(0)'">Send →</button>
+        <p id="msg-status" style="margin-top:12px;font-size:13px;font-weight:600;display:none;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="si">
     <div class="ci">
@@ -395,6 +415,66 @@ const to = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
 }, {threshold: 0.1});
 document.querySelectorAll('.ti').forEach(el => to.observe(el));
+
+// Contact form
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('send-btn');
+  const status = document.getElementById('msg-status');
+  const name = document.getElementById('name-box').value.trim();
+  const email = document.getElementById('email-box').value.trim();
+  const msg = document.getElementById('msg-box').value.trim();
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (!name || !email || !msg) {
+    status.textContent = '✗ Please fill in all 3 fields before sending!';
+    status.style.color = '#e53935';
+    status.style.display = 'block';
+    return;
+  }
+  if (!emailValid) {
+    status.textContent = '✗ Please enter a valid email so I can contact you!';
+    status.style.color = '#e53935';
+    status.style.display = 'block';
+    document.getElementById('email-box').style.borderColor = '#e53935';
+    return;
+  }
+  status.style.display = 'none';
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  try {
+    const res = await fetch('https://formspree.io/f/mgobkawq', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: document.getElementById('name-box').value.trim(), email: document.getElementById('email-box').value.trim(), message: msg })
+    });
+    if (res.ok) {
+      status.textContent = '✓ Message sent! I\'ll get back to you soon.';
+      status.style.color = '#4CAF50';
+      status.style.display = 'block';
+      document.getElementById('msg-box').value = '';
+      document.getElementById('name-box').value = '';
+      document.getElementById('email-box').value = '';
+      btn.textContent = 'Sent ✓';
+      btn.style.background = '#4CAF50';
+    } else {
+      status.textContent = '✗ Something went wrong. Please try again.';
+      status.style.color = '#e53935';
+      status.style.display = 'block';
+      btn.textContent = 'Send →';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+    }
+  } catch {
+    status.textContent = '✗ Something went wrong. Please try again.';
+    status.style.color = '#e53935';
+    status.style.display = 'block';
+    btn.textContent = 'Send →';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+});
 
 // Skills accordion
 function toggleSk(id) {
