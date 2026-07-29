@@ -105,17 +105,24 @@ section{padding:96px 52px;background:transparent;}
 .tsk{display:flex;flex-wrap:wrap;gap:5px;}
 .tsk span{font-size:11px;font-weight:700;color:#4a7fd4;background:rgba(26,110,245,0.07);border:1px solid rgba(26,110,245,0.16);padding:2px 9px;border-radius:20px;}
 
-/* SKILLS - creative segmented display */
-.sk-wrap{display:flex;flex-direction:column;gap:14px;}
-.sk-seg{background:rgba(255,255,255,0.88);border:1.5px solid rgba(221,227,237,0.9);border-radius:14px;overflow:hidden;backdrop-filter:blur(8px);transition:all 0.2s;}
-.sk-seg:hover{border-color:rgba(26,110,245,0.3);box-shadow:0 4px 16px rgba(26,110,245,0.09);transform:translateY(-1px);}
-.sk-head{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;cursor:pointer;transition:background 0.15s;}
-.sk-label{font-size:16px;font-weight:800;color:#0d1b3e;display:flex;align-items:center;gap:10px;letter-spacing:-0.2px;}
-.sk-count{font-size:11px;font-weight:600;color:#9ba8b5;}
-.sk-arr{font-size:16px;color:#b0bec5;transition:transform 0.3s,color 0.2s;}
-.sk-seg.open .sk-arr{transform:rotate(180deg);color:#1a6ef5;}
-.sk-pills{max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;padding:0 22px;}
-.sk-seg.open .sk-pills{max-height:200px;opacity:1;padding:0 22px 18px;}
+/* GITHUB CTA */
+.gh-cta{margin-top:28px;text-align:center;}
+.gh-btn{display:inline-flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:#fff;background:#0d1b3e;border:1.5px solid #0d1b3e;border-radius:50px;padding:13px 26px;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 16px rgba(13,27,62,0.12);}
+.gh-btn:hover{background:#1a6ef5;border-color:#1a6ef5;transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,110,245,0.24);}
+.gh-ar{transition:transform 0.2s;font-weight:800;}
+.gh-btn:hover .gh-ar{transform:translateX(4px);}
+
+/* SKILLS - always-visible grid */
+.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sk-card{background:rgba(255,255,255,0.88);border:1.5px solid rgba(221,227,237,0.9);border-radius:14px;padding:20px 22px 22px;backdrop-filter:blur(8px);align-self:start;position:relative;overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;}
+.sk-card.wide{grid-column:1 / -1;}
+.sk-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#1a6ef5,rgba(26,110,245,0.15));opacity:0;transition:opacity 0.2s;}
+.sk-card:hover::before{opacity:1;}
+.sk-card:hover{border-color:rgba(26,110,245,0.3);box-shadow:0 6px 22px rgba(26,110,245,0.09);transform:translateY(-2px);}
+.sk-top{display:flex;align-items:center;gap:10px;margin-bottom:15px;}
+.sk-num{font-size:10.5px;font-weight:800;color:#1a6ef5;background:rgba(26,110,245,0.09);border:1px solid rgba(26,110,245,0.18);border-radius:6px;padding:2px 7px;letter-spacing:0.5px;flex-shrink:0;}
+.sk-label{font-size:15.5px;font-weight:800;color:#0d1b3e;letter-spacing:-0.2px;line-height:1.3;}
+.sk-count{margin-left:auto;font-size:11px;font-weight:600;color:#9ba8b5;flex-shrink:0;}
 .sk-pills-inner{display:flex;flex-wrap:wrap;gap:8px;}
 .sk-p{font-size:13.5px;font-weight:600;color:#0d1b3e;background:#f0f4f8;border:1.5px solid #dde3ed;padding:7px 16px;border-radius:50px;transition:all 0.2s;cursor:default;}
 .sk-p:hover{border-color:rgba(26,110,245,0.38);color:#1a6ef5;transform:translateY(-2px);box-shadow:0 3px 10px rgba(26,110,245,0.1);}
@@ -139,20 +146,8 @@ section{padding:96px 52px;background:transparent;}
 
 footer{background:rgba(240,244,248,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(176,190,197,0.35);text-align:center;padding:14px;font-size:12px;color:#5a6b8a;font-weight:600;box-shadow:0 -2px 16px rgba(13,27,62,0.04);}
 
-@media(max-width:768px){.hi{grid-template-columns:1fr;gap:40px;}h1{font-size:40px;}.pi2{grid-template-columns:1fr;}.ps2{grid-template-columns:1fr;}.tw::before{left:18px;}.tl,.tr{padding:0 0 0 46px;}.td{left:18px;}}
+@media(max-width:768px){.sk-grid{grid-template-columns:1fr;}.hi{grid-template-columns:1fr;gap:40px;}h1{font-size:40px;}.pi2{grid-template-columns:1fr;}.ps2{grid-template-columns:1fr;}.tw::before{left:18px;}.tl,.tr{padding:0 0 0 46px;}.td{left:18px;}}
 
-.sk-seg.open {
-  border-left: 3px solid #1a6ef5 !important;
-  background: rgba(255,255,255,0.94) !important;
-}
-.sk-seg.open .sk-label {
-  color: #1a6ef5 !important;
-}
-.sk-seg.open .sk-arr {
-  color: #1a6ef5 !important;
-}
-.sk-arr { font-size: 18px; color: #b0bec5; transition: transform 0.3s, color 0.2s; font-weight: 600; }
-.sk-head:hover { background: rgba(26,110,245,0.025); }
 </style>
 </head>
 <body>
@@ -189,7 +184,23 @@ footer{background:rgba(240,244,248,0.82);backdrop-filter:blur(16px);-webkit-back
 <section id="projects">
   <div class="si">
     <div class="sh">Projects</div>
-    <div class="pl"><div class="pc" id="p0">
+    <div class="pl"><div class="pc" id="pA">
+        <div class="ph" onclick="tp('pA')">
+          <div><div class="pn">Fulfillment Network Optimization &middot; AI Sourcing Agent <a href="https://github.com/anumsagheer01/sourcing-and-optimization-engine" target="_blank" onclick="event.stopPropagation()" class="pa">&#8599;</a></div><div class="sr"><span class="sc">Mixed-Integer Programming</span><span class="sc">PuLP</span><span class="sc">Anthropic API</span><span class="sc">Agentic AI</span><span class="sc">Python</span></div></div>
+          <div class="pr"><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pb"><div class="pbi">
+          <ul class="bul"><li>Cut shipping distance 8.4% and raised two-day delivery to 95.1% at a lower cost per unit, tested on a simulated year of 3.6 million units across 25 cities and 12 products</li><li>AI sourcing agent turns a contractor's plain-English request into a costed fulfillment plan, calling the solver as a tool so the language model reads the request and never does the math</li><li>Found the real constraint was warehouse placement, not routing. With no Pacific Northwest site, two-day service caps near 95% no matter how well orders are routed</li></ul>
+        </div></div>
+      </div><div class="pc" id="pB">
+        <div class="ph" onclick="tp('pB')">
+          <div><div class="pn">Financial Complaint Signal Agent <a href="https://github.com/anumsagheer01/fin-complaint-signal-agent" target="_blank" onclick="event.stopPropagation()" class="pa">&#8599;</a></div><div class="sr"><span class="sc">RAG</span><span class="sc">Anomaly Detection</span><span class="sc">STL Decomposition</span><span class="sc">Claude API</span><span class="sc">Docker</span></div></div>
+          <div class="pr"><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </div>
+        <div class="pb"><div class="pbi">
+          <ul class="bul"><li>Retrieval over 14,945 real CFPB bank complaints returns the correct issue type as its top result 85% of the time and inside the top five 97% of the time, measured on 200 held-out complaints</li><li>STL decomposition flags unusual complaint days, and on a real January 2025 spike the agent surfaced Zelle transfer problems as the likely driver without being prompted to look</li><li>Caught an incomplete final week in the source pull and trimmed it, since the false drop to near zero would have fired a bogus anomaly alert</li></ul>
+        </div></div>
+      </div><div class="pc" id="p0">
         <div class="ph" onclick="tp('p0')">
           <div><div class="pn">Multi-Agent Research Assistant <a href="https://github.com/anumsagheer01/research-assistant" target="_blank" onclick="event.stopPropagation()" class="pa">↗</a></div><div class="sr"><span class="sc">LangGraph</span><span class="sc">LLaMA 3.1</span><span class="sc">Groq</span><span class="sc">Tavily</span><span class="sc">AWS S3</span></div></div>
           <div class="pr"><a class="lb" href="https://huggingface.co/spaces/anumsagheer/research-assistant" target="_blank" onclick="event.stopPropagation()"><span class="ld"></span>Live</a><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
@@ -251,6 +262,13 @@ footer{background:rgba(240,244,248,0.82);backdrop-filter:blur(16px);-webkit-back
         </div></div>
       </div>
     </div>
+    <div class="gh-cta">
+      <a class="gh-btn" href="https://github.com/anumsagheer01?tab=repositories" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        View all projects on GitHub
+        <span class="gh-ar">&#8594;</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -299,41 +317,38 @@ footer{background:rgba(240,244,248,0.82);backdrop-filter:blur(16px);-webkit-back
   <div class="si">
     <div class="sh">Skills</div>
     <p style="font-size:15px;font-weight:500;color:#5a6b8a;margin-top:-32px;margin-bottom:44px;line-height:1.6;">Skills I know deeply and skills I have worked with across projects.</p>
-    <div class="sk-wrap">
-      <div class="sk-seg open" id="sk0">
-        <div class="sk-head" onclick="toggleSk('sk0')">
-          <div class="sk-label">LLM and Agentic Systems</div>
-          <span class="sk-arr">⌄</span>
-        </div>
-        <div class="sk-pills"><div class="sk-pills-inner"><span class="sk-p">LangChain</span><span class="sk-p">LangGraph</span><span class="sk-p">LangSmith</span><span class="sk-p">MCP</span><span class="sk-p">Multi-agent orchestration</span><span class="sk-p">RAG</span><span class="sk-p">Prompt engineering</span><span class="sk-p">OpenAI API</span><span class="sk-p">Anthropic API</span><span class="sk-p">Groq</span></div></div>
+    <div class="sk-grid">
+      <div class="sk-card wide">
+        <div class="sk-top"><span class="sk-num">01</span><div class="sk-label">Languages</div><span class="sk-count">3</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">Python</span><span class="sk-p">SQL</span><span class="sk-p">PySpark</span></div>
       </div>
-      <div class="sk-seg" id="sk1">
-        <div class="sk-head" onclick="toggleSk('sk1')">
-          <div class="sk-label">Evaluation and Quality</div>
-          <span class="sk-arr">⌄</span>
-        </div>
-        <div class="sk-pills"><div class="sk-pills-inner"><span class="sk-p">LLM-as-Judge</span><span class="sk-p">RAGAS</span><span class="sk-p">Hallucination detection</span><span class="sk-p">Regression testing pipelines</span><span class="sk-p">DPO preference pairs</span><span class="sk-p">Demographic bias audits</span><span class="sk-p">A/B testing</span><span class="sk-p">Hypothesis testing</span></div></div>
+      <div class="sk-card">
+        <div class="sk-top"><span class="sk-num">02</span><div class="sk-label">Generative AI &amp; NLP</div><span class="sk-count">14</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">LLMs</span><span class="sk-p">RAG</span><span class="sk-p">Agentic AI</span><span class="sk-p">LangGraph</span><span class="sk-p">LangChain</span><span class="sk-p">Prompt Engineering</span><span class="sk-p">LLM Evaluation</span><span class="sk-p">Semantic Search</span><span class="sk-p">Reranking</span><span class="sk-p">Information Extraction</span><span class="sk-p">LangSmith</span><span class="sk-p">MCP</span><span class="sk-p">RAGAS</span><span class="sk-p">Hallucination Detection</span></div>
       </div>
-      <div class="sk-seg" id="sk2">
-        <div class="sk-head" onclick="toggleSk('sk2')">
-          <div class="sk-label">ML and Fine-tuning</div>
-          <span class="sk-arr">⌄</span>
-        </div>
-        <div class="sk-pills"><div class="sk-pills-inner"><span class="sk-p">PyTorch</span><span class="sk-p">HuggingFace Transformers</span><span class="sk-p">LoRA / PEFT</span><span class="sk-p">scikit-learn</span><span class="sk-p">XGBoost</span><span class="sk-p">SHAP</span><span class="sk-p">MLflow</span></div></div>
+      <div class="sk-card">
+        <div class="sk-top"><span class="sk-num">03</span><div class="sk-label">Data Science &amp; Machine Learning</div><span class="sk-count">11</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">Scikit-learn</span><span class="sk-p">XGBoost</span><span class="sk-p">PyTorch</span><span class="sk-p">Classification</span><span class="sk-p">Forecasting</span><span class="sk-p">Anomaly Detection</span><span class="sk-p">Model Evaluation</span><span class="sk-p">SHAP</span><span class="sk-p">LoRA / PEFT</span><span class="sk-p">HuggingFace Transformers</span><span class="sk-p">MLflow</span></div>
       </div>
-      <div class="sk-seg" id="sk3">
-        <div class="sk-head" onclick="toggleSk('sk3')">
-          <div class="sk-label">Data and Analytics</div>
-          <span class="sk-arr">⌄</span>
-        </div>
-        <div class="sk-pills"><div class="sk-pills-inner"><span class="sk-p">Python</span><span class="sk-p">SQL</span><span class="sk-p">PySpark</span><span class="sk-p">Snowflake</span><span class="sk-p">PostgreSQL</span><span class="sk-p">Pandas</span><span class="sk-p">NumPy</span><span class="sk-p">Power BI</span></div></div>
+      <div class="sk-card">
+        <div class="sk-top"><span class="sk-num">04</span><div class="sk-label">Data Engineering &amp; ETL</div><span class="sk-count">7</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">ETL Pipelines</span><span class="sk-p">Apache Spark</span><span class="sk-p">Databricks</span><span class="sk-p">Data Integration</span><span class="sk-p">Data Cleaning</span><span class="sk-p">Schema Design</span><span class="sk-p">Batch Processing</span></div>
       </div>
-      <div class="sk-seg" id="sk4">
-        <div class="sk-head" onclick="toggleSk('sk4')">
-          <div class="sk-label">Cloud and Infrastructure</div>
-          <span class="sk-arr">⌄</span>
-        </div>
-        <div class="sk-pills"><div class="sk-pills-inner"><span class="sk-p">AWS (S3, Lambda, Glue, Athena)</span><span class="sk-p">Docker</span><span class="sk-p">Kubernetes</span><span class="sk-p">GitHub Actions CI/CD</span><span class="sk-p">FastAPI</span><span class="sk-p">Vector DBs (Pinecone, pgvector, OpenSearch)</span><span class="sk-p">Cohere Rerank</span></div></div>
+      <div class="sk-card">
+        <div class="sk-top"><span class="sk-num">05</span><div class="sk-label">Analytics &amp; Statistics</div><span class="sk-count">6</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">A/B Testing</span><span class="sk-p">Hypothesis Testing</span><span class="sk-p">Time-Series Analysis</span><span class="sk-p">Survival Analysis</span><span class="sk-p">Power BI</span><span class="sk-p">Tableau</span></div>
+      </div>
+      <div class="sk-card">
+        <div class="sk-top"><span class="sk-num">06</span><div class="sk-label">Cloud &amp; Deployment</div><span class="sk-count">6</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">AWS</span><span class="sk-p">FastAPI</span><span class="sk-p">Docker</span><span class="sk-p">Kubernetes</span><span class="sk-p">GitHub Actions</span><span class="sk-p">Streamlit</span></div>
+      </div>
+      <div class="sk-card">
+        <div class="sk-top"><span class="sk-num">07</span><div class="sk-label">Databases &amp; Search</div><span class="sk-count">5</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">PostgreSQL</span><span class="sk-p">pgvector</span><span class="sk-p">OpenSearch</span><span class="sk-p">Pinecone</span><span class="sk-p">Snowflake</span></div>
+      </div>
+      <div class="sk-card wide">
+        <div class="sk-top"><span class="sk-num">08</span><div class="sk-label">Optimization</div><span class="sk-count">3</span></div>
+        <div class="sk-pills-inner"><span class="sk-p">Mixed-Integer Programming</span><span class="sk-p">PuLP</span><span class="sk-p">Scenario Analysis</span></div>
       </div>
     </div>
   </div>
@@ -403,14 +418,6 @@ const to = new IntersectionObserver((entries) => {
 }, {threshold: 0.1});
 document.querySelectorAll('.ti').forEach(el => to.observe(el));
 
-
-// Skills accordion
-function toggleSk(id) {
-  const seg = document.getElementById(id);
-  const open = seg.classList.contains('open');
-  document.querySelectorAll('.sk-seg').forEach(s => s.classList.remove('open'));
-  if (!open) seg.classList.add('open');
-}
 </script>
 </body>
 </html>
